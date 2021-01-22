@@ -8,6 +8,7 @@ CONFIG_FILE = /etc/dict/dictd.conf
 DICTNAME = wordset-dictionary
 DICTNAME_FULL = "Wordset Dictionary"
 DICTFILE = ${DICTNAME}_dict.txt
+
 DOWNLOAD_DIR = data
 
 define CONFIG
@@ -23,34 +24,12 @@ make:
 	dictfmt --utf8 --allchars -s ${DICTNAME_FULL} -j ${DICTNAME} < ${DICTFILE}
 
 download:
-	mkdir ${DOWNLOAD_DIR}
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/a.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/b.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/c.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/d.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/e.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/f.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/g.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/h.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/i.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/j.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/k.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/l.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/m.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/misc.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/n.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/o.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/p.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/q.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/r.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/s.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/t.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/u.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/v.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/w.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/x.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/y.json"
-	curl --output-dir ${DOWNLOAD_DIR} --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/z.json"
+	mkdir -p ${DOWNLOAD_DIR}
+	for letter in a b c d e f g h i j k l m misc n o p q r s t u v w x y z ; \
+	do \
+		curl --output-dir ${DOWNLOAD_DIR} \
+		     --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/$$letter.json" ; \
+	done
 
 install:
 	mkdir -p ${DESTDIR}
