@@ -6,7 +6,6 @@ Scripts to convert wordset-dictionary to [DICT](https://en.wikipedia.org/wiki/DI
 
 ```sh
 make download
-make
 sudo make install
 ```
 
