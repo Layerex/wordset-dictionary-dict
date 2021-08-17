@@ -7,6 +7,9 @@ import sys
 
 def main():
     files = glob.glob("data/*")
+    if not files:
+        print("Wordset dictionary files not found. Run make download to download those.", file=sys.stderr)
+        exit(1)
     with sys.stdout as out:
         for file_name in files:
             with open(file_name) as f:
