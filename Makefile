@@ -3,6 +3,7 @@ CONFIG_FILE = /etc/dict/dictd.conf
 DICTNAME = wordset-dictionary
 DICTNAME_FULL = "Wordset Dictionary"
 DICTFILE = ${DICTNAME}_dict.txt
+REVISION = "master"
 
 DATADIR = data
 
@@ -23,7 +24,7 @@ download:
 	for letter in a b c d e f g h i j k l m misc n o p q r s t u v w x y z ; \
 	do \
 		curl --output-dir ${DATADIR} \
-		     --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/$$letter.json" ; \
+		     --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/${REVISION}/data/$$letter.json" ; \
 	done
 
 install: make
