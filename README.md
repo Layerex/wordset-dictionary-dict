@@ -1,6 +1,6 @@
 # wordset-dictionary-dict
 
-Scripts to convert wordset-dictionary to [DICT](https://en.wikipedia.org/wiki/DICT#DICT_file_format) format.
+Scripts to convert [wordset-dictionary](https://github.com/wordset/wordset-dictionary) to [DICT](https://en.wikipedia.org/wiki/DICT#DICT_file_format) format.
 
 ## Installation
 
