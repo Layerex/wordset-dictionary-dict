@@ -15,7 +15,7 @@ endef
 export CONFIG
 
 make:
-	python3 wordset-dictionary-parse.py > ${DICTFILE}
+	python3 wordset-dictionary-parse.py ${DATADIR} > ${DICTFILE}
 	dictfmt --utf8 --allchars -s ${DICTNAME_FULL} -j ${DICTNAME} < ${DICTFILE}
 
 download:
