@@ -8,7 +8,10 @@ import sys
 def main():
     files = glob.glob(f"{sys.argv[1]}/*.json")
     if not files:
-        print("Wordset dictionary files not found. Run make download to download those.", file=sys.stderr)
+        print(
+            "Wordset dictionary files not found. Run make download to download those.",
+            file=sys.stderr,
+        )
         exit(1)
     with sys.stdout as out:
         for file_name in files:
@@ -19,8 +22,7 @@ def main():
                     if "meanings" in word.keys():
                         for meaning in word["meanings"]:
                             out.write(
-                                f':{word["word"]}:({meaning["speech_part"]})'
-                                f' {meaning["def"]}.'
+                                f':{word["word"]}:({meaning["speech_part"]})' f' {meaning["def"]}.'
                             )
                             if "example" in meaning.keys():
                                 out.write(f' {meaning["example"]}')
