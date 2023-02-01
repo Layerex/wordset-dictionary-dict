@@ -4,7 +4,7 @@ DICTNAME = wordset-dictionary
 DICTNAME_FULL = "Wordset Dictionary"
 DICTFILE = ${DICTNAME}_dict.txt
 
-DOWNLOAD_DIR = data
+DATADIR = data
 
 define CONFIG
 database ${DICTNAME} {
@@ -19,10 +19,10 @@ make:
 	dictfmt --utf8 --allchars -s ${DICTNAME_FULL} -j ${DICTNAME} < ${DICTFILE}
 
 download:
-	mkdir -p ${DOWNLOAD_DIR}
+	mkdir -p ${DATADIR}
 	for letter in a b c d e f g h i j k l m misc n o p q r s t u v w x y z ; \
 	do \
-		curl --output-dir ${DOWNLOAD_DIR} \
+		curl --output-dir ${DATADIR} \
 		     --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/master/data/$$letter.json" ; \
 	done
 
