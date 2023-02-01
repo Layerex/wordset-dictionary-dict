@@ -2,7 +2,6 @@ DESTDIR = /usr/local/share/dict
 CONFIG_FILE = /etc/dict/dictd.conf
 DICTNAME = wordset-dictionary
 DICTNAME_FULL = "Wordset Dictionary"
-DICTFILE = ${DICTNAME}_dict.txt
 REVISION = "master"
 
 DATADIR = data
@@ -16,8 +15,7 @@ endef
 export CONFIG
 
 make:
-	python3 wordset-dictionary-parse.py ${DATADIR} > ${DICTFILE}
-	dictfmt --utf8 --allchars -s ${DICTNAME_FULL} -j ${DICTNAME} < ${DICTFILE}
+	python3 wordset-dictionary-parse.py ${DATADIR} | dictfmt --utf8 --allchars -s ${DICTNAME_FULL} -j ${DICTNAME}
 
 download:
 	mkdir -p ${DATADIR}
@@ -37,6 +35,6 @@ uninstall:
 	rm -f ${DESTDIR}/${DICTNAME}.index ${DESTDIR}/${DICTNAME}.dict
 
 clean:
-	rm -f ${DICTNAME}_dict.txt ${DICTNAME}.dict ${DICTNAME}.index
+	rm -f ${DICTNAME}.dict ${DICTNAME}.index
 
 # end
