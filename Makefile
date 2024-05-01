@@ -25,7 +25,7 @@ download:
 		     --remote-name "https://raw.githubusercontent.com/wordset/wordset-dictionary/${REVISION}/data/$$letter.json" ; \
 	done
 
-install: make
+install: ${DICTNAME}.index ${DICTNAME}.dict
 	mkdir -p ${DESTDIR}
 	cp -f ${DICTNAME}.dict ${DICTNAME}.index ${DESTDIR}
 	@echo "Don't forget to add following to dictd config (usually ${CONFIG_FILE}) and to restart dictd."
